@@ -1,0 +1,646 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 77;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		00C92A702F8BF05700E65EF5 /* tokenizer_config.json in Resources */ = {isa = PBXBuildFile; fileRef = 00C92A6F2F8BF05700E65EF5 /* tokenizer_config.json */; };
+		00D832CB2F83C56E006510ED /* Llama3_2.mlpackage in Sources */ = {isa = PBXBuildFile; fileRef = 00D832CA2F83C56E006510ED /* Llama3_2.mlpackage */; };
+		00D832CD2F83CC4C006510ED /* kjv.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = 00D832CC2F83CC4C006510ED /* kjv.sqlite */; };
+		00E08FE62F88F68800DE6DEA /* Hub in Frameworks */ = {isa = PBXBuildFile; productRef = 00E08FE52F88F68800DE6DEA /* Hub */; };
+		00E08FE82F88F68800DE6DEA /* Tokenizers in Frameworks */ = {isa = PBXBuildFile; productRef = 00E08FE72F88F68800DE6DEA /* Tokenizers */; };
+		00E08FEA2F890D0D00DE6DEA /* DistilGPT2.mlmodelc in Resources */ = {isa = PBXBuildFile; fileRef = 00E08FE92F890D0D00DE6DEA /* DistilGPT2.mlmodelc */; };
+		00E08FED2F89355E00DE6DEA /* merges.txt in Resources */ = {isa = PBXBuildFile; fileRef = 00E08FEB2F89355E00DE6DEA /* merges.txt */; };
+		00E08FEE2F89355E00DE6DEA /* vocab.json in Resources */ = {isa = PBXBuildFile; fileRef = 00E08FEC2F89355E00DE6DEA /* vocab.json */; };
+		00E08FF42F893AC100DE6DEA /* tokenizer.json in Resources */ = {isa = PBXBuildFile; fileRef = 00E08FF32F893AC100DE6DEA /* tokenizer.json */; };
+		00F4568B2F880BC6007861FA /* GRDB in Frameworks */ = {isa = PBXBuildFile; productRef = 00F4568A2F880BC6007861FA /* GRDB */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		00D832AE2F83C51D006510ED /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 00D832982F83C51C006510ED /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 00D8329F2F83C51C006510ED;
+			remoteInfo = BibleAIAssistant;
+		};
+		00D832B82F83C51D006510ED /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 00D832982F83C51C006510ED /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 00D8329F2F83C51C006510ED;
+			remoteInfo = BibleAIAssistant;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		00C92A6F2F8BF05700E65EF5 /* tokenizer_config.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = tokenizer_config.json; sourceTree = "<group>"; };
+		00D832A02F83C51C006510ED /* BibleAIAssistant.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BibleAIAssistant.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		00D832AD2F83C51D006510ED /* BibleAIAssistantTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BibleAIAssistantTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		00D832B72F83C51D006510ED /* BibleAIAssistantUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BibleAIAssistantUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		00D832CA2F83C56E006510ED /* Llama3_2.mlpackage */ = {isa = PBXFileReference; lastKnownFileType = folder.mlpackage; path = Llama3_2.mlpackage; sourceTree = "<group>"; };
+		00D832CC2F83CC4C006510ED /* kjv.sqlite */ = {isa = PBXFileReference; lastKnownFileType = file; path = kjv.sqlite; sourceTree = "<group>"; };
+		00E08FE92F890D0D00DE6DEA /* DistilGPT2.mlmodelc */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = DistilGPT2.mlmodelc; sourceTree = "<group>"; };
+		00E08FEB2F89355E00DE6DEA /* merges.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = merges.txt; sourceTree = "<group>"; };
+		00E08FEC2F89355E00DE6DEA /* vocab.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = vocab.json; sourceTree = "<group>"; };
+		00E08FF32F893AC100DE6DEA /* tokenizer.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = tokenizer.json; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFileSystemSynchronizedRootGroup section */
+		00D832A22F83C51C006510ED /* BibleAIAssistant */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = BibleAIAssistant;
+			sourceTree = "<group>";
+		};
+		00D832B02F83C51D006510ED /* BibleAIAssistantTests */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = BibleAIAssistantTests;
+			sourceTree = "<group>";
+		};
+		00D832BA2F83C51D006510ED /* BibleAIAssistantUITests */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = BibleAIAssistantUITests;
+			sourceTree = "<group>";
+		};
+/* End PBXFileSystemSynchronizedRootGroup section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		00D8329D2F83C51C006510ED /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				00E08FE62F88F68800DE6DEA /* Hub in Frameworks */,
+				00F4568B2F880BC6007861FA /* GRDB in Frameworks */,
+				00E08FE82F88F68800DE6DEA /* Tokenizers in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		00D832AA2F83C51D006510ED /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		00D832B42F83C51D006510ED /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		00D832972F83C51C006510ED = {
+			isa = PBXGroup;
+			children = (
+				00C92A6F2F8BF05700E65EF5 /* tokenizer_config.json */,
+				00E08FF32F893AC100DE6DEA /* tokenizer.json */,
+				00E08FEB2F89355E00DE6DEA /* merges.txt */,
+				00E08FEC2F89355E00DE6DEA /* vocab.json */,
+				00E08FE92F890D0D00DE6DEA /* DistilGPT2.mlmodelc */,
+				00D832CA2F83C56E006510ED /* Llama3_2.mlpackage */,
+				00D832CC2F83CC4C006510ED /* kjv.sqlite */,
+				00D832A22F83C51C006510ED /* BibleAIAssistant */,
+				00D832B02F83C51D006510ED /* BibleAIAssistantTests */,
+				00D832BA2F83C51D006510ED /* BibleAIAssistantUITests */,
+				00D832A12F83C51C006510ED /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		00D832A12F83C51C006510ED /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				00D832A02F83C51C006510ED /* BibleAIAssistant.app */,
+				00D832AD2F83C51D006510ED /* BibleAIAssistantTests.xctest */,
+				00D832B72F83C51D006510ED /* BibleAIAssistantUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		00D8329F2F83C51C006510ED /* BibleAIAssistant */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 00D832C12F83C51D006510ED /* Build configuration list for PBXNativeTarget "BibleAIAssistant" */;
+			buildPhases = (
+				00D8329C2F83C51C006510ED /* Sources */,
+				00D8329D2F83C51C006510ED /* Frameworks */,
+				00D8329E2F83C51C006510ED /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			fileSystemSynchronizedGroups = (
+				00D832A22F83C51C006510ED /* BibleAIAssistant */,
+			);
+			name = BibleAIAssistant;
+			packageProductDependencies = (
+				00F4568A2F880BC6007861FA /* GRDB */,
+				00E08FE52F88F68800DE6DEA /* Hub */,
+				00E08FE72F88F68800DE6DEA /* Tokenizers */,
+			);
+			productName = BibleAIAssistant;
+			productReference = 00D832A02F83C51C006510ED /* BibleAIAssistant.app */;
+			productType = "com.apple.product-type.application";
+		};
+		00D832AC2F83C51D006510ED /* BibleAIAssistantTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 00D832C42F83C51D006510ED /* Build configuration list for PBXNativeTarget "BibleAIAssistantTests" */;
+			buildPhases = (
+				00D832A92F83C51D006510ED /* Sources */,
+				00D832AA2F83C51D006510ED /* Frameworks */,
+				00D832AB2F83C51D006510ED /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				00D832AF2F83C51D006510ED /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				00D832B02F83C51D006510ED /* BibleAIAssistantTests */,
+			);
+			name = BibleAIAssistantTests;
+			packageProductDependencies = (
+			);
+			productName = BibleAIAssistantTests;
+			productReference = 00D832AD2F83C51D006510ED /* BibleAIAssistantTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		00D832B62F83C51D006510ED /* BibleAIAssistantUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 00D832C72F83C51D006510ED /* Build configuration list for PBXNativeTarget "BibleAIAssistantUITests" */;
+			buildPhases = (
+				00D832B32F83C51D006510ED /* Sources */,
+				00D832B42F83C51D006510ED /* Frameworks */,
+				00D832B52F83C51D006510ED /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				00D832B92F83C51D006510ED /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				00D832BA2F83C51D006510ED /* BibleAIAssistantUITests */,
+			);
+			name = BibleAIAssistantUITests;
+			packageProductDependencies = (
+			);
+			productName = BibleAIAssistantUITests;
+			productReference = 00D832B72F83C51D006510ED /* BibleAIAssistantUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		00D832982F83C51C006510ED /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1640;
+				LastUpgradeCheck = 1640;
+				TargetAttributes = {
+					00D8329F2F83C51C006510ED = {
+						CreatedOnToolsVersion = 16.4;
+					};
+					00D832AC2F83C51D006510ED = {
+						CreatedOnToolsVersion = 16.4;
+						TestTargetID = 00D8329F2F83C51C006510ED;
+					};
+					00D832B62F83C51D006510ED = {
+						CreatedOnToolsVersion = 16.4;
+						TestTargetID = 00D8329F2F83C51C006510ED;
+					};
+				};
+			};
+			buildConfigurationList = 00D8329B2F83C51C006510ED /* Build configuration list for PBXProject "BibleAIAssistant" */;
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 00D832972F83C51C006510ED;
+			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				00F456892F880BC6007861FA /* XCRemoteSwiftPackageReference "GRDB.swift" */,
+				00E08FE42F88F68800DE6DEA /* XCRemoteSwiftPackageReference "swift-transformers" */,
+			);
+			preferredProjectObjectVersion = 77;
+			productRefGroup = 00D832A12F83C51C006510ED /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				00D8329F2F83C51C006510ED /* BibleAIAssistant */,
+				00D832AC2F83C51D006510ED /* BibleAIAssistantTests */,
+				00D832B62F83C51D006510ED /* BibleAIAssistantUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		00D8329E2F83C51C006510ED /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				00E08FED2F89355E00DE6DEA /* merges.txt in Resources */,
+				00E08FEE2F89355E00DE6DEA /* vocab.json in Resources */,
+				00C92A702F8BF05700E65EF5 /* tokenizer_config.json in Resources */,
+				00E08FEA2F890D0D00DE6DEA /* DistilGPT2.mlmodelc in Resources */,
+				00E08FF42F893AC100DE6DEA /* tokenizer.json in Resources */,
+				00D832CD2F83CC4C006510ED /* kjv.sqlite in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		00D832AB2F83C51D006510ED /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		00D832B52F83C51D006510ED /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		00D8329C2F83C51C006510ED /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				00D832CB2F83C56E006510ED /* Llama3_2.mlpackage in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		00D832A92F83C51D006510ED /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		00D832B32F83C51D006510ED /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		00D832AF2F83C51D006510ED /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 00D8329F2F83C51C006510ED /* BibleAIAssistant */;
+			targetProxy = 00D832AE2F83C51D006510ED /* PBXContainerItemProxy */;
+		};
+		00D832B92F83C51D006510ED /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 00D8329F2F83C51C006510ED /* BibleAIAssistant */;
+			targetProxy = 00D832B82F83C51D006510ED /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		00D832BF2F83C51D006510ED /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				COREML_CODEGEN_LANGUAGE = None;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = RGNQD8D2M9;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.5;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		00D832C02F83C51D006510ED /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				COREML_CODEGEN_LANGUAGE = None;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = RGNQD8D2M9;
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.5;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		00D832C22F83C51D006510ED /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = RGNQD8D2M9;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.surajkthomas.BibleAIAssistant;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		00D832C32F83C51D006510ED /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = RGNQD8D2M9;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.surajkthomas.BibleAIAssistant;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		00D832C52F83C51D006510ED /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = RGNQD8D2M9;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.5;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.surajkthomas.BibleAIAssistantTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/BibleAIAssistant.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/BibleAIAssistant";
+			};
+			name = Debug;
+		};
+		00D832C62F83C51D006510ED /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = RGNQD8D2M9;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.5;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.surajkthomas.BibleAIAssistantTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/BibleAIAssistant.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/BibleAIAssistant";
+			};
+			name = Release;
+		};
+		00D832C82F83C51D006510ED /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = RGNQD8D2M9;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.surajkthomas.BibleAIAssistantUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = BibleAIAssistant;
+			};
+			name = Debug;
+		};
+		00D832C92F83C51D006510ED /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = RGNQD8D2M9;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.surajkthomas.BibleAIAssistantUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = BibleAIAssistant;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		00D8329B2F83C51C006510ED /* Build configuration list for PBXProject "BibleAIAssistant" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				00D832BF2F83C51D006510ED /* Debug */,
+				00D832C02F83C51D006510ED /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		00D832C12F83C51D006510ED /* Build configuration list for PBXNativeTarget "BibleAIAssistant" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				00D832C22F83C51D006510ED /* Debug */,
+				00D832C32F83C51D006510ED /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		00D832C42F83C51D006510ED /* Build configuration list for PBXNativeTarget "BibleAIAssistantTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				00D832C52F83C51D006510ED /* Debug */,
+				00D832C62F83C51D006510ED /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		00D832C72F83C51D006510ED /* Build configuration list for PBXNativeTarget "BibleAIAssistantUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				00D832C82F83C51D006510ED /* Debug */,
+				00D832C92F83C51D006510ED /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		00E08FE42F88F68800DE6DEA /* XCRemoteSwiftPackageReference "swift-transformers" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/huggingface/swift-transformers";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.3.0;
+			};
+		};
+		00F456892F880BC6007861FA /* XCRemoteSwiftPackageReference "GRDB.swift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/groue/GRDB.swift.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 7.1.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		00E08FE52F88F68800DE6DEA /* Hub */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 00E08FE42F88F68800DE6DEA /* XCRemoteSwiftPackageReference "swift-transformers" */;
+			productName = Hub;
+		};
+		00E08FE72F88F68800DE6DEA /* Tokenizers */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 00E08FE42F88F68800DE6DEA /* XCRemoteSwiftPackageReference "swift-transformers" */;
+			productName = Tokenizers;
+		};
+		00F4568A2F880BC6007861FA /* GRDB */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 00F456892F880BC6007861FA /* XCRemoteSwiftPackageReference "GRDB.swift" */;
+			productName = GRDB;
+		};
+/* End XCSwiftPackageProductDependency section */
+	};
+	rootObject = 00D832982F83C51C006510ED /* Project object */;
+}

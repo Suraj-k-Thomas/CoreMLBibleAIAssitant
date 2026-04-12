@@ -1,0 +1,21 @@
+{
+  "Inputs" : {
+    "causalMask" : {
+      "MLFeatureShortDescription" : "--"
+    },
+    "inputIds" : {
+      "MLFeatureShortDescription" : "--"
+    }
+  },
+  "Outputs" : {
+    "logits" : {
+      "MLFeatureShortDescription" : "--"
+    }
+  },
+  "TrainingInputs" : {
+
+  },
+  "States" : {
+
+  }
+}

@@ -1,0 +1,5 @@
+*.bin
+*.mlmodelc
+*.sqlite
+models/
+.DS_Store
