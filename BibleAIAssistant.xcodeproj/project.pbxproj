@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0064A51A2F98C1AE00C084A7 /* ArchitectureDiagram.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0064A5192F98C19B00C084A7 /* ArchitectureDiagram.swift */; };
 		00C92A702F8BF05700E65EF5 /* tokenizer_config.json in Resources */ = {isa = PBXBuildFile; fileRef = 00C92A6F2F8BF05700E65EF5 /* tokenizer_config.json */; };
 		00D832CB2F83C56E006510ED /* Llama3_2.mlpackage in Sources */ = {isa = PBXBuildFile; fileRef = 00D832CA2F83C56E006510ED /* Llama3_2.mlpackage */; };
 		00D832CD2F83CC4C006510ED /* kjv.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = 00D832CC2F83CC4C006510ED /* kjv.sqlite */; };
@@ -37,6 +38,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0064A5192F98C19B00C084A7 /* ArchitectureDiagram.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArchitectureDiagram.swift; sourceTree = "<group>"; };
 		00C92A6F2F8BF05700E65EF5 /* tokenizer_config.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = tokenizer_config.json; sourceTree = "<group>"; };
 		00D832A02F83C51C006510ED /* BibleAIAssistant.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BibleAIAssistant.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		00D832AD2F83C51D006510ED /* BibleAIAssistantTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BibleAIAssistantTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -109,6 +111,7 @@
 				00D832B02F83C51D006510ED /* BibleAIAssistantTests */,
 				00D832BA2F83C51D006510ED /* BibleAIAssistantUITests */,
 				00D832A12F83C51C006510ED /* Products */,
+				0064A5192F98C19B00C084A7 /* ArchitectureDiagram.swift */,
 			);
 			sourceTree = "<group>";
 		};
@@ -279,6 +282,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0064A51A2F98C1AE00C084A7 /* ArchitectureDiagram.swift in Sources */,
 				00D832CB2F83C56E006510ED /* Llama3_2.mlpackage in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
