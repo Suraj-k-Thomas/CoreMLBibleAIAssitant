@@ -992,10 +992,15 @@ final class RAGService: @unchecked Sendable {
                     }
                     messages.append(.init(role: .user, content: query))
 
-                    let promptTokens = try tokenizer.encode(
-                        template.format(messages: messages, context: chunks)
-                    )
-                    print("📝 Prompt tokens: \(promptTokens.count)")
+                    // Use direct token-ID encoding if the template supports it (e.g. Llama 3),
+                    // so special tokens are always exact IDs regardless of tokenizer string handling.
+                    let promptTokens: [Int]
+                    if let direct = try template.tokenize(messages: messages, context: chunks, using: tokenizer) {
+                        promptTokens = direct
+                    } else {
+                        promptTokens = try tokenizer.encode(template.format(messages: messages, context: chunks))
+                    }
+                    print("📝 Prompt tokens: \(promptTokens.count) (first 5: \(Array(promptTokens.prefix(5))))")
 
                     // 3. Generate (stream)
                     continuation.yield(.generating)
