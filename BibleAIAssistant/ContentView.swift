@@ -636,10 +636,15 @@ actor CoreMLLanguageModel: LanguageModel {
     var isLoaded: Bool { model != nil }
 
     func load() async throws {
-        guard let url = Bundle.main.url(
+        // Try the configured extension first, then mlmodelc (Xcode compiles mlpackage → mlmodelc).
+        let url = Bundle.main.url(
             forResource: configuration.weightsResourceName,
             withExtension: configuration.weightsResourceExtension
-        ) else {
+        ) ?? Bundle.main.url(
+            forResource: configuration.weightsResourceName,
+            withExtension: "mlmodelc"
+        )
+        guard let url else {
             throw AppError.modelFilesNotFound(configuration.weightsResourceName)
         }
         let cfg = MLModelConfiguration()
@@ -806,21 +811,30 @@ extension LanguageModelConfiguration {
         )
     )
 
-    /// Llama 3.2 1B-Instruct via MLX (planned). Requires mlx-swift-examples package.
+    /// Llama 3.2 1B-Instruct via Core ML (Llama3_2.mlpackage).
+    /// Tokenizer files required in bundle: llama_tokenizer.json + llama_tokenizer_config.json
     static let llama3_2_1bInstruct = LanguageModelConfiguration(
-        id: "llama-3.2-1b-instruct",
-        displayName: "Llama 3.2 1B Instruct (MLX)",
+        id: "llama-3.2-1b-coreml",
+        displayName: "Llama 3.2 1B (Core ML)",
         architecture: .llama3,
-        backend: .mlx,
+        backend: .coreML,
         contextLength: 131_072,
-        maxInputTokens: 4096,
+        maxInputTokens: 512,          // practical on-device cap per forward pass
         vocabSize: 128_256,
-        weightsResourceName: "Llama-3.2-1B-Instruct-4bit",
-        weightsResourceExtension: "mlmodelc",
-        tokenizerFiles: [],
-        coreMLSpec: nil,
+        weightsResourceName: "Llama3_2",
+        weightsResourceExtension: "mlpackage",
+        tokenizerFiles: [
+            TokenizerFileSpec(bundleResource: "llama_tokenizer",        bundleExtension: "json", targetFilename: "tokenizer.json"),
+            TokenizerFileSpec(bundleResource: "llama_tokenizer_config", bundleExtension: "json", targetFilename: "tokenizer_config.json"),
+        ],
+        coreMLSpec: CoreMLInputSpec(
+            inputIdsName: "inputIds",
+            logitsName: "logits",
+            inputShape: .batched,
+            extraInput: .causalMask(name: "causalMask")
+        ),
         promptTemplateID: "llama3",
-        stopTokenIds: [128001, 128008, 128009],
+        stopTokenIds: [128001, 128008, 128009],  // <|end_of_text|>, <|eom_id|>, <|eot_id|>
         padTokenId: 128004,
         fallbackTokenId: 128009,
         defaultOptions: GenerationOptions(
