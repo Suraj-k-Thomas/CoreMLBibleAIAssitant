@@ -111,8 +111,8 @@ struct LanguageModelConfiguration: Sendable, Identifiable, Hashable {
     let weightsResourceName: String
     let weightsResourceExtension: String
 
-    /// Tokenizer resource filenames (e.g. "vocab.json") — must exist in the main bundle.
-    let tokenizerFiles: [String]
+    /// Tokenizer files: bundle resource name → standard HuggingFace filename mapping.
+    let tokenizerFiles: [TokenizerFileSpec]
 
     let promptTemplateID: String
     let stopTokenIds: Set<Int>
@@ -122,6 +122,13 @@ struct LanguageModelConfiguration: Sendable, Identifiable, Hashable {
 
     static func == (lhs: Self, rhs: Self) -> Bool { lhs.id == rhs.id }
     func hash(into hasher: inout Hasher) { hasher.combine(id) }
+}
+
+/// Maps a bundle resource to the filename AutoTokenizer expects in the temp directory.
+struct TokenizerFileSpec: Sendable {
+    let bundleResource: String    // Bundle.main.url(forResource:) name (no extension)
+    let bundleExtension: String   // "json", "txt"
+    let targetFilename: String    // filename AutoTokenizer sees (e.g. "tokenizer.json")
 }
 
 struct GenerationOptions: Sendable {
@@ -420,16 +427,15 @@ enum TokenizerFactory {
         try fm.createDirectory(at: tempDir, withIntermediateDirectories: true)
 
         var missing: [String] = []
-        for filename in config.tokenizerFiles {
-            // Split "vocab.json" → resource "vocab", ext "json"
-            let parts = filename.split(separator: ".", maxSplits: 1)
-            let resource = parts.count > 0 ? String(parts[0]) : filename
-            let ext = parts.count > 1 ? String(parts[1]) : "json"
-            guard let src = Bundle.main.url(forResource: resource, withExtension: ext) else {
-                missing.append(filename)
+        for spec in config.tokenizerFiles {
+            guard let src = Bundle.main.url(
+                forResource: spec.bundleResource,
+                withExtension: spec.bundleExtension
+            ) else {
+                missing.append(spec.targetFilename)
                 continue
             }
-            try fm.copyItem(at: src, to: tempDir.appendingPathComponent(filename))
+            try fm.copyItem(at: src, to: tempDir.appendingPathComponent(spec.targetFilename))
         }
         guard missing.isEmpty else {
             print("❌ Missing tokenizer files: \(missing.joined(separator: ", "))")
@@ -741,7 +747,12 @@ extension LanguageModelConfiguration {
         vocabSize: 50257,
         weightsResourceName: "DistilGPT2",
         weightsResourceExtension: "mlmodelc",
-        tokenizerFiles: ["vocab.json", "merges.txt", "tokenizer.json", "tokenizer_config.json"],
+        tokenizerFiles: [
+            TokenizerFileSpec(bundleResource: "vocab",             bundleExtension: "json", targetFilename: "vocab.json"),
+            TokenizerFileSpec(bundleResource: "merges",            bundleExtension: "txt",  targetFilename: "merges.txt"),
+            TokenizerFileSpec(bundleResource: "tokenizer",         bundleExtension: "json", targetFilename: "tokenizer.json"),
+            TokenizerFileSpec(bundleResource: "tokenizer_config",  bundleExtension: "json", targetFilename: "tokenizer_config.json"),
+        ],
         promptTemplateID: "plain",
         stopTokenIds: [50256],
         padTokenId: 50256,
