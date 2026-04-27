@@ -114,6 +114,9 @@ struct LanguageModelConfiguration: Sendable, Identifiable, Hashable {
     /// Tokenizer files: bundle resource name → standard HuggingFace filename mapping.
     let tokenizerFiles: [TokenizerFileSpec]
 
+    /// Core ML feature interface description. nil for non-CoreML backends.
+    let coreMLSpec: CoreMLInputSpec?
+
     let promptTemplateID: String
     let stopTokenIds: Set<Int>
     let padTokenId: Int
@@ -122,6 +125,25 @@ struct LanguageModelConfiguration: Sendable, Identifiable, Hashable {
 
     static func == (lhs: Self, rhs: Self) -> Bool { lhs.id == rhs.id }
     func hash(into hasher: inout Hasher) { hasher.combine(id) }
+}
+
+/// Describes how to talk to a Core ML model's feature interface.
+struct CoreMLInputSpec: Sendable {
+    let inputIdsName: String      // "input_ids" (GPT-2) or "inputIds" (Llama)
+    let logitsName: String        // "output_logits" (GPT-2) or "logits" (Llama)
+    let inputShape: InputShape
+    let extraInput: ExtraInput
+
+    enum InputShape: Sendable {
+        case flat(padLength: Int)  // GPT-2: fixed-size padded sequence [padLength]
+        case batched               // Llama: dynamic [1, seqLen]
+    }
+
+    enum ExtraInput: Sendable {
+        case positionIds(name: String)  // GPT-2: explicit position_ids
+        case causalMask(name: String)   // Llama: additive [1,1,n,n] attention mask
+        case none
+    }
 }
 
 /// Maps a bundle resource to the filename AutoTokenizer expects in the temp directory.
@@ -634,12 +656,18 @@ actor CoreMLLanguageModel: LanguageModel {
                           options: GenerationOptions,
                           sampler: any Sampler) async throws -> Int {
         guard let model else { throw AppError.modelNotLoaded }
+        guard let spec = configuration.coreMLSpec else {
+            throw AppError.unsupportedBackend("No CoreML I/O spec for \(configuration.id)")
+        }
 
         let seq = Array(ids.suffix(configuration.maxInputTokens))
         let n = seq.count
-        let padLen = configuration.maxInputTokens
 
+        // ── Build input feature provider ──────────────────────────────
         // Fixed-shape GPT-2 style: flat [padLen] with right-padding and position IDs.
+        guard case .flat(let padLen) = spec.inputShape else {
+            throw AppError.unsupportedBackend("Only flat input shape supported in this version")
+        }
         let inputArr = try MLMultiArray(shape: [padLen as NSNumber], dataType: .int32)
         let posArr   = try MLMultiArray(shape: [padLen as NSNumber], dataType: .int32)
         let padID = configuration.padTokenId
@@ -647,17 +675,22 @@ actor CoreMLLanguageModel: LanguageModel {
             inputArr[i] = NSNumber(value: i < n ? seq[i] : padID)
             posArr[i]   = NSNumber(value: i)
         }
-        let provider = try MLDictionaryFeatureProvider(dictionary: [
-            "input_ids":    MLFeatureValue(multiArray: inputArr),
-            "position_ids": MLFeatureValue(multiArray: posArr),
-        ])
+        var dict: [String: MLFeatureValue] = [
+            spec.inputIdsName: MLFeatureValue(multiArray: inputArr)
+        ]
+        if case .positionIds(let name) = spec.extraInput {
+            dict[name] = MLFeatureValue(multiArray: posArr)
+        }
+        let provider = try MLDictionaryFeatureProvider(dictionary: dict)
 
+        // ── Run inference ─────────────────────────────────────────────
         let out = try await model.prediction(from: provider)
-        guard let logits = out.featureValue(for: "output_logits")?.multiArrayValue else {
+        guard let logits = out.featureValue(for: spec.logitsName)?.multiArrayValue else {
             return configuration.fallbackTokenId
         }
 
-        // Shape [1, padLen, vocab, 1, 1] — extract logits at position n-1.
+        // ── Extract last-position logits ──────────────────────────────
+        // Shape [1, padLen, vocab, 1, 1] — extract at position n-1.
         let vocab = configuration.vocabSize
         var raw = [Double](repeating: -.infinity, count: vocab)
         let shape = logits.shape.map { $0.intValue }
@@ -753,6 +786,12 @@ extension LanguageModelConfiguration {
             TokenizerFileSpec(bundleResource: "tokenizer",         bundleExtension: "json", targetFilename: "tokenizer.json"),
             TokenizerFileSpec(bundleResource: "tokenizer_config",  bundleExtension: "json", targetFilename: "tokenizer_config.json"),
         ],
+        coreMLSpec: CoreMLInputSpec(
+            inputIdsName: "input_ids",
+            logitsName: "output_logits",
+            inputShape: .flat(padLength: 64),
+            extraInput: .positionIds(name: "position_ids")
+        ),
         promptTemplateID: "plain",
         stopTokenIds: [50256],
         padTokenId: 50256,
@@ -779,6 +818,7 @@ extension LanguageModelConfiguration {
         weightsResourceName: "Llama-3.2-1B-Instruct-4bit",
         weightsResourceExtension: "mlmodelc",
         tokenizerFiles: [],
+        coreMLSpec: nil,
         promptTemplateID: "llama3",
         stopTokenIds: [128001, 128008, 128009],
         padTokenId: 128004,
