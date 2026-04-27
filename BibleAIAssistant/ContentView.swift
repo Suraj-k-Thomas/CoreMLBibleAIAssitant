@@ -182,6 +182,17 @@ protocol Retriever: Sendable {
 protocol PromptTemplate: Sendable {
     var id: String { get }
     func format(messages: [ChatMessage], context: [RetrievedChunk]) -> String
+    /// Build prompt as token IDs directly — bypasses string encoding for special tokens.
+    /// Return nil to fall back to encoding format() as a string.
+    func tokenize(messages: [ChatMessage],
+                  context: [RetrievedChunk],
+                  using tokenizer: any TokenizerProtocol) throws -> [Int]?
+}
+
+extension PromptTemplate {
+    func tokenize(messages: [ChatMessage],
+                  context: [RetrievedChunk],
+                  using tokenizer: any TokenizerProtocol) throws -> [Int]? { nil }
 }
 
 protocol Sampler: Sendable {
@@ -570,6 +581,14 @@ struct PlainPromptTemplate: PromptTemplate {
 struct Llama3PromptTemplate: PromptTemplate {
     let id = "llama3"
 
+    // Llama 3 special token IDs (fixed across all Llama 3.x models)
+    private enum Tok {
+        static let bos:         Int = 128000  // <|begin_of_text|>
+        static let headerStart: Int = 128006  // <|start_header_id|>
+        static let headerEnd:   Int = 128007  // <|end_header_id|>
+        static let eot:         Int = 128009  // <|eot_id|>
+    }
+
     func format(messages: [ChatMessage], context: [RetrievedChunk]) -> String {
         let ctx = context.map { "- \($0.text)" }.joined(separator: "\n")
         let baseSystem = messages.first(where: { $0.role == .system })?.content
@@ -588,6 +607,44 @@ struct Llama3PromptTemplate: PromptTemplate {
         }
         out += "<|start_header_id|>assistant<|end_header_id|>\n\n"
         return out
+    }
+
+    /// Builds the prompt as exact token IDs so special tokens are always correct,
+    /// regardless of whether the tokenizer treats them as special in plain strings.
+    func tokenize(messages: [ChatMessage],
+                  context: [RetrievedChunk],
+                  using tokenizer: any TokenizerProtocol) throws -> [Int]? {
+        let ctx = context.map { "- \($0.text)" }.joined(separator: "\n")
+        let baseSystem = messages.first(where: { $0.role == .system })?.content
+            ?? "You are a thoughtful assistant answering questions about the King James Bible."
+        let systemContent = context.isEmpty ? baseSystem :
+            "\(baseSystem)\n\nUse the following retrieved passages from the KJV as authoritative context. Quote them where relevant.\n\n\(ctx)"
+
+        var tokens: [Int] = [Tok.bos]
+
+        // System turn
+        tokens += [Tok.headerStart]
+        tokens += try tokenizer.encode("system")
+        tokens += [Tok.headerEnd]
+        tokens += try tokenizer.encode("\n\n\(systemContent)")
+        tokens += [Tok.eot]
+
+        // User / assistant turns
+        for m in messages where m.role != .system {
+            tokens += [Tok.headerStart]
+            tokens += try tokenizer.encode(m.role.rawValue)
+            tokens += [Tok.headerEnd]
+            tokens += try tokenizer.encode("\n\n\(m.content)")
+            tokens += [Tok.eot]
+        }
+
+        // Open assistant turn — model generates from here
+        tokens += [Tok.headerStart]
+        tokens += try tokenizer.encode("assistant")
+        tokens += [Tok.headerEnd]
+        tokens += try tokenizer.encode("\n\n")
+
+        return tokens
     }
 }
 
