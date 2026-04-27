@@ -932,11 +932,11 @@ extension LanguageModelConfiguration {
         padTokenId: 128004,
         fallbackTokenId: 128009,
         defaultOptions: GenerationOptions(
-            maxNewTokens: 256,
-            temperature: 0.6,
+            maxNewTokens: 150,
+            temperature: 0.3,   // low = less hallucination, more grounded
             topP: 0.9,
             topK: 40,
-            repetitionPenalty: 1.1,
+            repetitionPenalty: 1.3,
             softStopTokens: []
         )
     )
@@ -1127,7 +1127,14 @@ final class BibleViewModel: ObservableObject {
             do {
                 let stream = rag.answer(
                     query: topic,
-                    systemPrompt: "You are a helpful assistant answering questions about the King James Bible. Based on the provided verses, give a thoughtful and concise commentary.",
+                    systemPrompt:
+                        "You are a Bible commentary assistant. " +
+                        "You will be given exact King James Bible verses as context. " +
+                        "Your ONLY job is to briefly explain what those specific verses mean in relation to the topic. " +
+                        "RULES: Only reference the verses provided in the context. " +
+                        "Do NOT quote or invent any other Bible verses. " +
+                        "Do NOT add citations not present in the context. " +
+                        "Keep your answer to 3-4 sentences maximum.",
                     k: 3,
                     options: config.defaultOptions
                 )
