@@ -860,10 +860,10 @@ enum LanguageModelFactory {
 
 enum ModelCatalog {
     static let all: [LanguageModelConfiguration] = [
-        .distilGPT2,
         .llama3_2_1bInstruct,
+        .distilGPT2,
     ]
-    static var defaultConfig: LanguageModelConfiguration { .distilGPT2 }
+    static var defaultConfig: LanguageModelConfiguration { .llama3_2_1bInstruct }
 }
 
 extension LanguageModelConfiguration {
